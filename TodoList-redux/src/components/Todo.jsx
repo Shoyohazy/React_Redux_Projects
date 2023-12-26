@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector , useDispatch } from 'react-redux'
-import {deleteTodo} from '../features/todoSlice'
+import {changeIndexOfTodo, changeIsUpdate, deleteTodo} from '../features/todoSlice'
 
 function Todo() {
   const todos = useSelector((state) => state.todos)
+  const[isEditing , setIsEditing] = useState(false);
   const dispatch  = useDispatch();
+
+  function onToggleEdit(index){
+    setIsEditing(true);
+    dispatch(changeIndexOfTodo(index))
+    dispatch(changeIsUpdate());
+  }
+
   return (
     <>
     <div className='text-2xl font-bold mt-6 '>Todos</div>
+    {
     <ul className="list-none">
-        {todos.map((todo) => (
+        {todos.map((todo, index) => (
           <li
             className="mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded"
             key={todo.id}
           >
             <div className='text-white'>{todo.text}</div>
+            <button 
+              onClick={() => onToggleEdit(index)}
+              className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-700">
+              Update!
+            </button>
             <button
              onClick={() => dispatch(deleteTodo(todo.id))}
               className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
@@ -37,6 +51,7 @@ function Todo() {
           </li>
         ))}
       </ul>
+    }
     </>
   )
 }
