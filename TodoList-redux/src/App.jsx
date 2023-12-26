@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-        <h1 className='font-semibold text-3xl text-amber-300 mt-2 '>Add Your tasks below...</h1>
+        <h1 className='font-semibold text-3xl text-amber-300 mt-2 mb-2 '>Add Your tasks below...</h1>
         {isUpdate ? <UpdateTodo/> : <AddTodo/>}
         <Todo />
     </>

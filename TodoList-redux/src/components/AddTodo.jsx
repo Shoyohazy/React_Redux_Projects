@@ -6,12 +6,12 @@ function AddTodo() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
  
-
   const addTodoHandler = (e) => {
     e.preventDefault();
     dispatch(addTodo(input));
     setInput("");
   };
+
   return (
     <>
       <input
@@ -24,7 +24,7 @@ function AddTodo() {
         <button
           type="submit"
           onClick={(e) => addTodoHandler(e)}
-          className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg "
+          className="text-white bg-indigo-500 border-0 ml-2 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg "
         >
           Add todo
         </button>
